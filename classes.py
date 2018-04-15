@@ -5,12 +5,12 @@ from constants import *
 class Macgyver:
     """ class representing the character played"""
 
-    def __init__(self, x, y, screen):
+    def __init__(self, x, y, screen, level):
         self.posx = x
         self.posy = y
         self.sprite_x = int(x / 30)
         self.sprite_y = int(y / 30)
-        
+        self.level = level
         self.screen = screen
         self.image = pygame.image.load('images/macgyver2.png').convert_alpha()
 
@@ -21,20 +21,28 @@ class Macgyver:
     def move_mg(self, direction):
         "move character in the proper direction"""
         if direction == 'down':
-            self.posy += 30
-            self.sprite_y += 1
+            if self.sprite_y < (sprites_in_level-1):
+                if self.level.structure[self.sprite_y+1][self.sprite_x] != '1':
+                    self.posy += 30
+                    self.sprite_y += 1
             
         elif direction == 'up':
-            self.posy -= 30
-            self.sprite_y -= 1
-            
+            if self.sprite_y > 0:
+                if self.level.structure[self.sprite_y-1][self.sprite_x] != '1':
+                    self.posy -= 30
+                    self.sprite_y -= 1
+                    
         elif direction == 'left':
-            self.posx -= 30
-            self.sprite_x -= 1 
-            
+            if self.sprite_x > 0:
+                if self.level.structure[self.sprite_y][self.sprite_x-1] != '1':
+                    self.posx -= 30
+                    self.sprite_x -= 1 
+                
         elif direction == 'right':
-            self.posx += 30
-            self.sprite_x += 1
+            if self.sprite_x < (sprites_in_level-1):
+                if self.level.structure[self.sprite_y][self.sprite_x+1] != '1':
+                    self.posx += 30
+                    self.sprite_x += 1
 
 class Level:
     """ class representing the level of the game"""

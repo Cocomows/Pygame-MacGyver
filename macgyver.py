@@ -10,7 +10,7 @@ def run_game():
     
     #~ Get level structure in list
     #~ current_level = generate_level()
-    the_level = Level('level')
+    current_level = Level('level')
     
     #Initialisation de la bibliothèque Pygame
     pygame.init()
@@ -20,8 +20,8 @@ def run_game():
     fond = pygame.image.load(background).convert()
     screen.blit(fond, (0, 0))
    
-    the_level.display_walls(screen)
-    macgyver = Macgyver(0,0,screen)
+    current_level.display_walls(screen)
+    macgyver = Macgyver(0,0,screen,current_level)
     macgyver.blit_mg()
 
     active = 1
@@ -46,8 +46,8 @@ def run_game():
                     #~ move right
                     macgyver.move_mg('right')
         screen.blit(fond, (0, 0))
-        print("Position : "+str(macgyver.sprite_x)+","+str(macgyver.sprite_y))
-        the_level.display_walls(screen)
+        #~ print("Position : "+str(macgyver.sprite_x)+","+str(macgyver.sprite_y)).
+        current_level.display_walls(screen)
         macgyver.blit_mg()
         pygame.display.flip()
 
