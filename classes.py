@@ -12,7 +12,7 @@ class Macgyver:
         self.sprite_y = int(y / 30)
         self.level = level
         self.screen = screen
-        self.image = pygame.image.load('images/macgyver2.png').convert_alpha()
+        self.image = pygame.image.load(macgyverpic).convert_alpha()
 
     def blit_mg(self):
         """display character on the screen"""
@@ -25,19 +25,19 @@ class Macgyver:
                 if self.level.structure[self.sprite_y+1][self.sprite_x] != '1':
                     self.posy += 30
                     self.sprite_y += 1
-            
+
         elif direction == 'up':
             if self.sprite_y > 0:
                 if self.level.structure[self.sprite_y-1][self.sprite_x] != '1':
                     self.posy -= 30
                     self.sprite_y -= 1
-                    
+
         elif direction == 'left':
             if self.sprite_x > 0:
                 if self.level.structure[self.sprite_y][self.sprite_x-1] != '1':
                     self.posx -= 30
-                    self.sprite_x -= 1 
-                
+                    self.sprite_x -= 1
+
         elif direction == 'right':
             if self.sprite_x < (sprites_in_level-1):
                 if self.level.structure[self.sprite_y][self.sprite_x+1] != '1':
@@ -47,12 +47,12 @@ class Macgyver:
 class Level:
     """ class representing the level of the game"""
 
-    def __init__(self,level_file):
+    def __init__(self, level_file):
 
         self.level_file = level_file
         self.structure = []
         self.generate_level()
-
+        self.available_tiles = []
 
     def generate_level(self):
         """Generates the level as a table from file 'level', returns the table"""
@@ -67,12 +67,12 @@ class Level:
                 level_list.append(line_list)
         self.structure = level_list
 
-    def display_walls(self,screen):
+    def display_walls(self, screen):
         """Reads the level table and returns all non-wall tiles"""
-        
-        case_dispo = []
-        mur = pygame.image.load('images/mur.png').convert_alpha()
 
+        
+        wall = pygame.image.load(wallpic).convert_alpha()
+        guardian = pygame.image.load(guardianpic).convert_alpha()
 
         num_line = 0
         for ligne_horiz in self.structure:
@@ -84,9 +84,12 @@ class Level:
                 position_y = num_line * size_of_sprite
 
                 if ligne_vert == str(1):
-                    screen.blit(mur, (position_x, position_y))
+                    screen.blit(wall, (position_x, position_y))
+                elif ligne_vert == 'f':
+                    screen.blit(guardian, (position_x,position_y))
                 else:
-                    case_dispo.append((num_line, num_col))
+                    if ligne_vert == str(0):
+                        self.available_tiles.append((num_line, num_col))
 
                 num_col += 1
             num_line += 1
