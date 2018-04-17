@@ -11,6 +11,14 @@ wallpic = 'images/mur2.png'
 macgyverpic = 'images/macgyver2.png'
 guardianpic = 'images/guardian.png'
 victory = 'images/victory.jpg'
+lost = 'images/lost.jpg'
+object0 = 'images/needle.png'
+object1 = 'images/tube.png'
+object2 = 'images/ether.png'
+
+#~ Game parameters
+number_of_collectables = 3
+
 
 #~ Window parameters
 window_title = "MacGyver"

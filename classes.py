@@ -13,6 +13,7 @@ class Macgyver:
         self.level = level
         self.screen = screen
         self.image = pygame.image.load(macgyverpic).convert_alpha()
+        self.items_collected = 0
 
     def blit_mg(self):
         """display character on the screen"""
@@ -53,9 +54,11 @@ class Level:
         self.structure = []
         self.generate_level()
         self.available_tiles = []
+        self.fond = pygame.image.load(background).convert()
+
 
     def generate_level(self):
-        """Generates the level as a table from file 'level', returns the table"""
+        """Generates the level as a table from file 'level' """
         with open(self.level_file, "r") as level_file:
 
             level_list = []
@@ -70,9 +73,11 @@ class Level:
     def display_walls(self, screen):
         """Reads the level table and returns all non-wall tiles"""
 
-        
+
         wall = pygame.image.load(wallpic).convert_alpha()
         guardian = pygame.image.load(guardianpic).convert_alpha()
+        
+        screen.blit(self.fond, (0, 0))
 
         num_line = 0
         for ligne_horiz in self.structure:
@@ -86,16 +91,42 @@ class Level:
                 if ligne_vert == str(1):
                     screen.blit(wall, (position_x, position_y))
                 elif ligne_vert == 'f':
-                    screen.blit(guardian, (position_x,position_y))
+                    screen.blit(guardian, (position_x, position_y))
                 else:
                     if ligne_vert == str(0):
-                        self.available_tiles.append((num_line, num_col))
+                        self.available_tiles.append((num_col, num_line))
 
                 num_col += 1
             num_line += 1
         #~ print("Liste des cases disponibles : "+str(case_dispo))
 
 
+class Collectable:
+    """Represents objects player has to collect"""
+    def __init__(self, coordinates, style):
 
+
+        self.sprite_x = coordinates[0]
+        self.sprite_y = coordinates[1]
+        self.posx = self.sprite_x * 30
+        self.posy = self.sprite_y * 30
+        self.style = style
+
+        self.is_picked = False
+
+
+        if style == 0:
+            #~ First style object gets object1 pic
+            self.image = pygame.image.load(object0).convert_alpha()
+        elif style == 1:
+            self.image = pygame.image.load(object1).convert_alpha()
+
+        elif style == 2:
+            self.image = pygame.image.load(object2).convert_alpha()
+        else :
+            print("error in loading file")
+
+    def pick(self):
+        self.is_picked = True
 
 
