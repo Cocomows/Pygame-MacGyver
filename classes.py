@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# coding: utf-8
 """file with all classes for the macgyver game"""
 import pygame
 from constants import *
@@ -76,7 +78,7 @@ class Level:
 
         wall = pygame.image.load(wallpic).convert_alpha()
         guardian = pygame.image.load(guardianpic).convert_alpha()
-        
+
         screen.blit(self.fond, (0, 0))
 
         num_line = 0
@@ -105,15 +107,12 @@ class Collectable:
     """Represents objects player has to collect"""
     def __init__(self, coordinates, style):
 
-
         self.sprite_x = coordinates[0]
         self.sprite_y = coordinates[1]
         self.posx = self.sprite_x * 30
         self.posy = self.sprite_y * 30
         self.style = style
-
         self.is_picked = False
-
 
         if style == 0:
             #~ First style object gets object1 pic
@@ -123,10 +122,7 @@ class Collectable:
 
         elif style == 2:
             self.image = pygame.image.load(object2).convert_alpha()
-        else :
+        else:
             print("error in loading file")
-
-    def pick(self):
-        self.is_picked = True
 
 
