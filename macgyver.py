@@ -21,11 +21,11 @@ def generate_collectables(current_level):
     return list_of_collectables
 
 
-def run_game():
+def main():
     """Main function for running the game"""
 
 
-    #Pygame initialisation
+    #~ Pygame initialisation
     pygame.init()
     pygame.display.set_caption(window_title)
     pygame.time.Clock().tick(30)
@@ -111,5 +111,5 @@ def run_game():
 
 
 
-
-run_game()
+if __name__ == "__main__":
+    main()

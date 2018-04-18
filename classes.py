@@ -73,7 +73,7 @@ class Level:
         self.structure = level_list
 
     def display_walls(self, screen):
-        """Reads the level table and returns all non-wall tiles"""
+        """Reads the level table and stores all non-wall tiles in available_tiles"""
 
 
         wall = pygame.image.load(wallpic).convert_alpha()
@@ -100,7 +100,6 @@ class Level:
 
                 num_col += 1
             num_line += 1
-        #~ print("Liste des cases disponibles : "+str(case_dispo))
 
 
 class Collectable:
@@ -114,15 +113,15 @@ class Collectable:
         self.style = style
         self.is_picked = False
 
+
+        #~ Attributing a picture for each type of collectable object
         if style == 0:
-            #~ First style object gets object1 pic
             self.image = pygame.image.load(object0).convert_alpha()
         elif style == 1:
             self.image = pygame.image.load(object1).convert_alpha()
-
         elif style == 2:
             self.image = pygame.image.load(object2).convert_alpha()
         else:
-            print("error in loading file")
+            print("No file for object style : "+ str(self.style))
 
 
