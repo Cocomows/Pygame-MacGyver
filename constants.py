@@ -14,12 +14,11 @@ macgyverpic = 'images/macgyver2.png'
 guardianpic = 'images/guardian.png'
 victory = 'images/victory.jpg'
 lost = 'images/lost.jpg'
-object0 = 'images/needle.png'
-object1 = 'images/tube.png'
-object2 = 'images/ether.png'
+objects_images = ['images/needle.png','images/tube.png','images/ether.png']
+
 
 #~ Game parameters
-number_of_collectables = 3
+number_of_collectables = len(objects_images)
 
 
 #~ Window parameters

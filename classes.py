@@ -112,16 +112,6 @@ class Collectable:
         self.posy = self.sprite_y * 30
         self.style = style
         self.is_picked = False
-
-
-        #~ Attributing a picture for each type of collectable object
-        if style == 0:
-            self.image = pygame.image.load(object0).convert_alpha()
-        elif style == 1:
-            self.image = pygame.image.load(object1).convert_alpha()
-        elif style == 2:
-            self.image = pygame.image.load(object2).convert_alpha()
-        else:
-            print("No file for object style : "+ str(self.style))
+        self.image = pygame.image.load(objects_images[style]).convert_alpha()
 
 
