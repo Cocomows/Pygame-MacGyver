@@ -5,6 +5,7 @@ Macgyver is trapped in a labyrinth and must collect all the items randomly dropp
 Reach the guardian after collecting all items to win the game, or you will lose.
 
 Install the required files with "pip install -r requirements.txt"
+
 Launch the game with "python3 macgyver.py"
 
 
