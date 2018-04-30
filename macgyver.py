@@ -2,26 +2,15 @@
 # coding: utf-8
 """Main module for macgyver game"""
 
-import random
 import pygame
 
-from classes import *
 from pygame.locals import QUIT, KEYDOWN, K_F1, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_ESCAPE
+from classes import *
 
 
-def generate_collectables(current_level):
-    """Place the character and all objects on the level"""
-    list_of_collectables = []
-    for i in range(0, number_of_collectables):
-        #~ Randomly place the collectables on the available tiles.
-        rand_tile = random.randint(0, len(current_level.available_tiles)-1)
-        collectable = Collectable(current_level.available_tiles[rand_tile], i)
-        list_of_collectables.append(collectable)
-        current_level.available_tiles.pop(rand_tile)
-    return list_of_collectables
-
-def play_the_game(macgyver, list_of_collectables, screen, current_level, active, gameplaying):
+def play_the_game(macgyver, screen, current_level, active, gameplaying):
     """Main actions of playing including moving and collecting items"""
+
     current_level.display_walls(screen)
     #~ Check if an event making the character move happens and make the character move
     for event in pygame.event.get():
@@ -43,25 +32,23 @@ def play_the_game(macgyver, list_of_collectables, screen, current_level, active,
                 macgyver.move_mg('right')
 
     #~ Check if an object is picked
-    for collectable in list_of_collectables:
-        if collectable.is_picked is False:
+    for collectable in current_level.list_of_collectables:
+        if not collectable.is_picked:
             screen.blit(collectable.image, (collectable.posx, collectable.posy))
 
-        if collectable.is_picked is False and macgyver.sprite_y == collectable.sprite_y \
-            and macgyver.sprite_x == collectable.sprite_x:
+        if (not collectable.is_picked and macgyver.sprite_y == collectable.sprite_y and
+                macgyver.sprite_x == collectable.sprite_x):
             collectable.is_picked = True
             macgyver.items_collected += 1
             #~ print("Object picked, items collected : "+str(macgyver.items_collected))
 
-
     macgyver.blit_mg()
-
 
     return active, gameplaying
 
 def collection_complete(macgyver):
     """Returns true if all objects are collected"""
-    return macgyver.items_collected == number_of_collectables
+    return macgyver.items_collected == NUMBER_OF_COLLECTABLES
 
 def finish_tile_reached(current_level, macgyver):
     """Returns true when character is on finish tile"""
@@ -70,18 +57,18 @@ def finish_tile_reached(current_level, macgyver):
 def set_game():
     """Set the parameters for the game"""
     #~ Window creation
-    screen = pygame.display.set_mode((size_of_level, size_of_level))
+    screen = pygame.display.set_mode((SIZE_OF_LEVEL, SIZE_OF_LEVEL))
 
     #~ Get level structure in list
     current_level = Level('level')
     current_level.display_walls(screen)
+    current_level.generate_collectables()
 
     macgyver = Macgyver(0, 0, screen, current_level)
-    list_of_collectables = generate_collectables(current_level)
 
     active = 1
     gameplaying = 1
-    return (macgyver, list_of_collectables, screen, current_level, active, gameplaying)
+    return (macgyver, screen, current_level, active, gameplaying)
 
 def main():
     """Main function for running the game"""
@@ -89,14 +76,14 @@ def main():
 
     #~ Pygame initialisation
     pygame.init()
-    pygame.display.set_caption(window_title)
+    pygame.display.set_caption(WINDOW_TITLE)
     pygame.time.Clock().tick(100)
     pygame.key.set_repeat(100, 100)
 
     #~ Set the game
-    macgyver, list_of_collectables, screen, current_level, active, gameplaying = set_game()
-    victory_screen = pygame.image.load(victory).convert()
-    lost_screen = pygame.image.load(lost).convert()
+    macgyver, screen, current_level, active, gameplaying = set_game()
+    victory_screen = pygame.image.load(VICTORY).convert()
+    lost_screen = pygame.image.load(LOST).convert()
 
     #~ Loop for the game
     while active:
@@ -109,11 +96,13 @@ def main():
             if event.type == KEYDOWN:
                 if event.key == K_F1:
                     #~ Reset the game
-                    macgyver, list_of_collectables, screen, current_level, active, gameplaying = set_game()
+                    (macgyver, screen, current_level,
+                     active, gameplaying) = set_game()
 
         while gameplaying:
 
-            active, gameplaying = play_the_game(macgyver, list_of_collectables, screen, current_level, active, gameplaying)
+            active, gameplaying = play_the_game(macgyver, screen, current_level,
+                                                active, gameplaying)
 
             if finish_tile_reached(current_level, macgyver):
                 gameplaying = 0

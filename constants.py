@@ -3,23 +3,23 @@
 """Constants for the macgyver game"""
 
 #~ Window parameters
-sprites_in_level = 15
-size_of_sprite = 30
-size_of_level = sprites_in_level * size_of_sprite
+SPRITES_IN_LEVEL = 15
+SIZE_OF_SPRITE = 30
+SIZE_OF_LEVEL = SPRITES_IN_LEVEL * SIZE_OF_SPRITE
 
 #~ List of pictures in the game
-background = 'images/fond.jpg'
-wallpic = 'images/mur2.png'
-macgyverpic = 'images/macgyver2.png'
-guardianpic = 'images/guardian.png'
-victory = 'images/victory.jpg'
-lost = 'images/lost.jpg'
-objects_images = ['images/needle.png','images/tube.png','images/ether.png']
+BACKGROUND = 'images/fond.jpg'
+WALLPIC = 'images/mur2.png'
+MACGYVERPIC = 'images/macgyver2.png'
+GUARDIANPIC = 'images/guardian.png'
+VICTORY = 'images/victory.jpg'
+LOST = 'images/lost.jpg'
+OBJECTS_IMAGES = ['images/needle.png', 'images/tube.png', 'images/ether.png']
 
 
 #~ Game parameters
-number_of_collectables = len(objects_images)
+NUMBER_OF_COLLECTABLES = len(OBJECTS_IMAGES)
 
 
 #~ Window parameters
-window_title = "MacGyver"
+WINDOW_TITLE = "MacGyver"
