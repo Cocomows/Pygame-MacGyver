@@ -9,8 +9,8 @@ SIZE_OF_LEVEL = SPRITES_IN_LEVEL * SIZE_OF_SPRITE
 
 #~ List of pictures in the game
 BACKGROUND = 'images/fond.jpg'
-WALLPIC = 'images/mur2.png'
-MACGYVERPIC = 'images/macgyver2.png'
+WALLPIC = 'images/mur.png'
+MACGYVERPIC = 'images/macgyver.png'
 GUARDIANPIC = 'images/guardian.png'
 VICTORY = 'images/victory.jpg'
 LOST = 'images/lost.jpg'

@@ -40,7 +40,6 @@ def play_the_game(macgyver, screen, current_level, active, gameplaying):
                 macgyver.sprite_x == collectable.sprite_x):
             collectable.is_picked = True
             macgyver.items_collected += 1
-            #~ print("Object picked, items collected : "+str(macgyver.items_collected))
 
     macgyver.blit_mg()
 
@@ -90,7 +89,8 @@ def main():
 
         for event in pygame.event.get():
             if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-                active = 0      #stop the game
+                #~ Stop the game
+                active = 0
                 gameplaying = 0
 
             if event.type == KEYDOWN:
@@ -104,6 +104,7 @@ def main():
             active, gameplaying = play_the_game(macgyver, screen, current_level,
                                                 active, gameplaying)
 
+            #~ When the finish tile is reached, display win or lose screen
             if finish_tile_reached(current_level, macgyver):
                 gameplaying = 0
                 if collection_complete(macgyver):
