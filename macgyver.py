@@ -3,7 +3,7 @@
 """Main module for macgyver game"""
 
 import pygame
-
+from maze import Maze
 from pygame.locals import QUIT, KEYDOWN, K_F1, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_ESCAPE
 from classes import *
 
@@ -59,7 +59,9 @@ def set_game():
     screen = pygame.display.set_mode((SIZE_OF_LEVEL, SIZE_OF_LEVEL))
 
     #~ Get level structure in list
-    current_level = Level('level')
+    mymaze = Maze()
+
+    current_level = Level('level_')
     current_level.display_walls(screen)
     current_level.generate_collectables()
 
