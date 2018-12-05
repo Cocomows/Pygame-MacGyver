@@ -100,16 +100,3 @@ class Maze:
                     self.change_cell(visited[-1], self.visited)
                     current_cell = visited[-1]
                     del visited[-1]
-
-#
-my_maze = Maze()
-# my_maze.print_maze()
-# my_cell = (12, 14)
-
-# print('changing cell : ' + str(my_cell))
-# my_maze.change_cell(my_cell, my_maze.maze)
-# my_maze.depth_first_search()
-# my_maze.print_maze()
-# my_maze.write()
-# print("neighbours of cell : " + str(my_cell))
-# print(my_maze.unvisited_cell_neighbors(my_cell))
