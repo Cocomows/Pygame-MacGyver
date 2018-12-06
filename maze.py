@@ -2,7 +2,6 @@ import random
 
 
 class Maze:
-    # width and height are in cells while cell_size is in pixel.
     def __init__(self):
         self.cells = []
         self.nb_line = 15
@@ -100,3 +99,6 @@ class Maze:
                     self.change_cell(visited[-1], self.visited)
                     current_cell = visited[-1]
                     del visited[-1]
+
+#
+# maze = Maze()
