@@ -48,6 +48,7 @@ class Macgyver:
                     self.posx += 30
                     self.sprite_x += 1
 
+
 class Level:
     """ class representing the level of the game"""
 
@@ -60,11 +61,9 @@ class Level:
         self.fond = pygame.image.load(BACKGROUND).convert()
         self.list_of_collectables = []
 
-
     def generate_level(self):
         """Generates the level as a table from file 'level' """
         with open(self.level_file, "r") as level_file:
-
             level_list = []
             for line in level_file:
                 line_list = []

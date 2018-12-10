@@ -26,7 +26,10 @@ class Maze:
 
     def print_maze(self):
         for line_ in self.cells:
-            print(line_)
+            for col_ in line_:
+                print(str(col_), end='')
+            print('')
+            # print(line_)
 
     def write(self):
         with open('level_', "w") as f:
@@ -76,8 +79,7 @@ class Maze:
         visited = []
         current_cell = (0, 0)
         visited.append(current_cell)
-        # commented to keep S in first
-        # self.change_cell(current_cell, self.maze)
+        self.change_cell(current_cell, self.maze)
 
         while visited:
 
@@ -100,5 +102,5 @@ class Maze:
                     current_cell = visited[-1]
                     del visited[-1]
 
-#
-# maze = Maze()
+
+maze = Maze()

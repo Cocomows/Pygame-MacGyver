@@ -78,7 +78,6 @@ def set_game():
 def main():
     """Main function for running the game"""
 
-
     # Pygame initialisation
     pygame.init()
     pygame.display.set_caption(WINDOW_TITLE)
