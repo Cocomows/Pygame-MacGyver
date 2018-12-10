@@ -62,7 +62,7 @@ def set_game():
     screen = pygame.display.set_mode((SIZE_OF_LEVEL, SIZE_OF_LEVEL))
 
     # Get level structure in list
-    Maze()
+    Maze(SPRITES_IN_LEVEL)
 
     current_level = Level('level_')
     current_level.display_walls(screen)
@@ -110,8 +110,11 @@ def main():
             if finish_tile_reached(current_level, macgyver):
                 gameplaying = 0
                 if collection_complete(macgyver):
+                    screen.fill(color=(0, 0, 0))
                     screen.blit(victory_screen, (0, 0))
+
                 else:
+                    screen.fill(color=(0, 0, 0))
                     screen.blit(lost_screen, (0, 0))
 
             # refresh screen

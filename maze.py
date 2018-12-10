@@ -2,10 +2,10 @@ import random
 
 
 class Maze:
-    def __init__(self):
+    def __init__(self, size=15):
         self.cells = []
-        self.nb_line = 15
-        self.nb_col = 15
+        self.nb_line = size
+        self.nb_col = size
         self.wall = '1'
         self.maze = '0'
         self.visited = '0'

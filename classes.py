@@ -5,6 +5,7 @@ import random
 import pygame
 from constants import *
 
+
 class Macgyver:
     """ class representing the character played"""
 
@@ -77,12 +78,13 @@ class Level:
         """Reads the level table, displays walls and guardian
         and stores all non-wall tiles in available_tiles"""
 
-
         wall = pygame.image.load(WALLPIC).convert_alpha()
         guardian = pygame.image.load(GUARDIANPIC).convert_alpha()
 
         screen.blit(self.fond, (0, 0))
-
+        screen.blit(pygame.transform.flip(self.fond, True, False), (15*SIZE_OF_SPRITE, 0))
+        screen.blit(pygame.transform.flip(self.fond, False, True), (0, 15*SIZE_OF_SPRITE))
+        screen.blit(pygame.transform.flip(self.fond, True, True), (15*SIZE_OF_SPRITE, 15*SIZE_OF_SPRITE))
         num_line = 0
         for ligne_horiz in self.structure:
             num_col = 0
@@ -107,12 +109,11 @@ class Level:
         """Place the collectable objects on the level"""
 
         for i in range(0, NUMBER_OF_COLLECTABLES):
-            #~ Randomly place the collectables on the available tiles.
+            # Randomly place the collectables on the available tiles.
             rand_tile = random.randint(0, len(self.available_tiles)-1)
             collectable = Collectable(self.available_tiles[rand_tile], i)
             self.list_of_collectables.append(collectable)
             self.available_tiles.pop(rand_tile)
-
 
 
 class Collectable:
