@@ -8,8 +8,16 @@ def maze():
     return Maze()
 
 
-def test_maze(maze):
-        assert maze.cells[0][0] == 's'
+def test_maze_start(maze):
+    assert maze.cells[0][0] == 's'
+
+
+def test_maze_finish(maze):
+    assert maze.cells[-1][-1] == 'f'
+
+
+def test_maze_path_next_finish(maze):
+    assert maze.cells[-2][-2] == '0'
 
 
 def test_change_cell(maze):

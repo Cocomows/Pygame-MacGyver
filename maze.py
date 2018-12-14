@@ -33,25 +33,13 @@ class Maze:
 
     def write(self):
         with open('level_', "w") as f:
+            self.cells[0][0] = 's'
+            self.cells[-1][-1] = 'f'
+            self.cells[-2][-2] = '0'
             for line in self.cells:
-                if self.cells.index(line) == 0:
-                    line[0] = "s"
-                    for col in line:
-                        f.write(str(col))
-                    f.write("\n")
-                elif self.cells.index(line) == self.nb_line - 2:
-                    line[self.nb_col - 2] = "0"
-                    for col in line:
-                        f.write(str(col))
-                    f.write("\n")
-                elif self.cells.index(line) == self.nb_line - 1:
-                    line[self.nb_col - 1] = "f"
-                    for col in line:
-                        f.write(str(col))
-                else:
-                    for col in line:
-                        f.write(str(col))
-                    f.write("\n")
+                for col in line:
+                    f.write(str(col))
+                f.write("\n")
 
     def unvisited_cell_neighbors(self, cell):
         x = cell[0]
